@@ -52,7 +52,9 @@ function printItems() {
         deleteButton.classList.add("boxclose")
         deleteButton.onclick = function() {
             toDoItems.splice(i, 1);
-            printItems();
+            myDiv.removeChild(checkBox);
+            myDiv.removeChild(checkBoxText);
+            myDiv.removeChild(deleteButton);
         };
         let newLine = document.createElement('p');
         myDiv.appendChild(checkBox);

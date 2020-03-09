@@ -57,11 +57,55 @@ input[type=text]:focus {
 
 input[type=checkbox] {
     cursor: pointer;
+    opacity: 0;
 }
 
 label {
+    position: relative;
     margin-left: 15px;
+    display: inline-block;
 }
+
+label::before, label::after {
+    position: absolute;
+    z-index: -1;
+    content: "";
+    display: inline-block;
+}
+
+label::before {
+    height: 15px;
+    width: 15px;
+    border: 1px solid #CCCCFF;
+    border-radius: 5px;
+    left: -35px;
+    top: 15px;
+}
+
+label::after {
+    height: 5px;
+    width: 9px;
+    border-left: 2px solid #9278b3;
+    border-bottom: 2px solid #9278b3;
+    transform: rotate(-45deg);
+    left: -32px;
+    top: 18px;
+}
+
+/*Hide the checkmark by default*/
+input[type="checkbox"] + label::after {
+    content: none;
+}
+
+/*Unhide on the checked state*/
+input[type="checkbox"]:checked + label::after {
+    content: "";
+}
+
+/*Adding focus styles on the outer-box of the fake checkbox*/
+/* input[type="checkbox"]:focus + label::before {
+    outline: rgb(59, 153, 252) auto 5px;
+} */
 
 #Result {
     font-family: 'Roboto', sans-serif;
