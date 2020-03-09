@@ -26,9 +26,10 @@ clearAllButton.onclick = function() {
 
 input.addEventListener("keydown", function(x) {
     if (x.keyCode === 13 && input.value !== "") {
+        let currentNumItems = toDoItems.length;
         let myItem = new toDoItem(input.value, "active");
         toDoItems.push(myItem);
-        printItems();
+        printItems(currentNumItems);
         input.value = "";
     }
 });
@@ -40,18 +41,15 @@ function toDoItem(text, status) {
     this.status = status;
 }
 
-function printItems() {
-    document.getElementById("Result").innerHTML = "";
-    for (let i = 0; i < toDoItems.length; i++) {
+function printItems(currentNumItems) {
         let checkBox = document.createElement('input');
         checkBox.type = "checkbox";
         let checkBoxText = document.createElement('label');
-        checkBoxText.appendChild(document.createTextNode(toDoItems[i].text));
+        checkBoxText.appendChild(document.createTextNode(toDoItems[currentNumItems].text));
         let deleteButton = document.createElement('button');
-        deleteButton.id = "delete-button";
         deleteButton.classList.add("boxclose")
         deleteButton.onclick = function() {
-            toDoItems.splice(i, 1);
+            toDoItems.splice(currentNumItems, 1);
             myDiv.removeChild(checkBox);
             myDiv.removeChild(checkBoxText);
             myDiv.removeChild(deleteButton);
@@ -61,5 +59,4 @@ function printItems() {
         myDiv.appendChild(checkBoxText);
         myDiv.appendChild(deleteButton);
         myDiv.appendChild(newLine);
-    }
 }
