@@ -20,7 +20,7 @@ nameButton.onclick = function() {
 
 clearAllButton.onclick = function() {
     toDoItems.splice(0, toDoItems.length);
-    printItems();
+    myDiv.textContent = "";
     input.value = "";
 }
 
