@@ -27,7 +27,7 @@ clearAllButton.onclick = function() {
 input.addEventListener("keydown", function(x) {
     if (x.keyCode === 13 && input.value !== "") {
         let currentNumItems = toDoItems.length;
-        let myItem = new toDoItem(input.value, "active");
+        let myItem = new toDoItem(input.value);
         toDoItems.push(myItem);
         printItems(currentNumItems);
         input.value = "";
@@ -36,9 +36,8 @@ input.addEventListener("keydown", function(x) {
 
 
 // Functions
-function toDoItem(text, status) {
+function toDoItem(text) {
     this.text = text;
-    this.status = status;
 }
 
 function printItems(currentNumItems) {
